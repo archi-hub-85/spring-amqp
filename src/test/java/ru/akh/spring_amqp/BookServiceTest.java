@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 
 import ru.akh.spring_amqp.dao.BookRepository;
 import ru.akh.spring_amqp.dto.Author;
@@ -21,6 +22,7 @@ import ru.akh.spring_amqp.sender.BookServiceClient;
 
 @SpringBootTest
 @Import(ClientConfig.class)
+@ActiveProfiles("embedded")
 public class BookServiceTest extends AbstractTest {
 
     @MockBean

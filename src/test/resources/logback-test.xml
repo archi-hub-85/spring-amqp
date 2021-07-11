@@ -20,6 +20,7 @@
 
     <logger name="org.springframework.amqp.rabbit.core.RabbitTemplate" level="trace" />
     <logger name="org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter" level="trace" />
+    <logger name="org.apache.qpid.server" level="info" />
 
     <logger name="ru.akh.spring_amqp" level="debug" />
 

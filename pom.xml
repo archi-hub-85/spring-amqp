@@ -16,6 +16,7 @@
     <properties>
         <java.version>1.9</java.version>
         <spring.version>5.3.6</spring.version>
+        <qpid-broker.version>7.0.2</qpid-broker.version>
 
         <start-class>ru.akh.spring_amqp.Application</start-class>
     </properties>
@@ -81,6 +82,24 @@
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-broker-core</artifactId>
+            <version>${qpid-broker.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-broker-plugins-amqp-0-8-protocol</artifactId>
+            <version>${qpid-broker.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-broker-plugins-memory-store</artifactId>
+            <version>${qpid-broker.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
