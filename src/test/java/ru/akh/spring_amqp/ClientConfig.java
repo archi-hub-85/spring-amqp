@@ -8,7 +8,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.test.TestRabbitTemplate;
-import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.boot.autoconfigure.amqp.RabbitTemplateConfigurer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
@@ -38,12 +38,9 @@ public class ClientConfig {
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter messageConverter,
-            ApplicationProperties appProperties) {
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, RabbitTemplateConfigurer configurer) {
         RabbitTemplate template = new TestRabbitTemplate(connectionFactory);
-        template.setMessageConverter(messageConverter);
-        template.setExchange(appProperties.getDirectExchange());
-        template.setRoutingKey(appProperties.getRoutingKey());
+        configurer.configure(template, connectionFactory);
         return template;
     }
 
