@@ -22,6 +22,7 @@ import ru.akh.spring_amqp.schema.GetTopBooksRequest;
 import ru.akh.spring_amqp.schema.GetTopBooksResponse;
 import ru.akh.spring_amqp.schema.ObjectFactory;
 import ru.akh.spring_amqp.schema.PutContentRequest;
+import ru.akh.spring_amqp.schema.PutContentResponse;
 import ru.akh.spring_amqp.schema.PutRequest;
 import ru.akh.spring_amqp.schema.PutResponse;
 
@@ -33,10 +34,6 @@ public class BookServiceClient {
 
     public BookServiceClient(AmqpTemplate template) {
         this.template = template;
-    }
-
-    private void send(Object request) {
-        template.convertAndSend(request);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,7 +86,7 @@ public class BookServiceClient {
         PutContentRequest request = factory.createPutContentRequest();
         request.setContent(BookContentWriteConverter.INSTANCE.convert(content));
 
-        send(request);
+        sendAndReceive(request, PutContentResponse.class);
     }
 
 }

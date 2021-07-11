@@ -24,6 +24,7 @@ import ru.akh.spring_amqp.schema.GetTopBooksRequest;
 import ru.akh.spring_amqp.schema.GetTopBooksResponse;
 import ru.akh.spring_amqp.schema.ObjectFactory;
 import ru.akh.spring_amqp.schema.PutContentRequest;
+import ru.akh.spring_amqp.schema.PutContentResponse;
 import ru.akh.spring_amqp.schema.PutRequest;
 import ru.akh.spring_amqp.schema.PutResponse;
 
@@ -94,9 +95,11 @@ public class BookServiceListener {
     }
 
     @RabbitHandler
-    public void putContent(PutContentRequest request) {
+    public PutContentResponse putContent(PutContentRequest request) {
         BookContent bookContent = BookContentReadConverter.INSTANCE.convert(request.getContent());
         repository.putContent(bookContent);
+
+        return factory.createPutContentResponse();
     }
 
 }

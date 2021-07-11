@@ -77,6 +77,10 @@ public class ClientConfig {
             return new EmbeddedAMQPBroker(configResource.toExternalForm());
         }
 
+        /**
+         * @see <a href="https://stackoverflow.com/a/49234754">Embedded AMQP Java
+         *      Broker</a>
+         */
         public static class EmbeddedAMQPBroker {
 
             private final SystemLauncher broker = new SystemLauncher();
